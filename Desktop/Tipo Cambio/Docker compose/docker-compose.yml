@@ -1,0 +1,51 @@
+version: '3.7'
+services:
+  servicio-eureka-server:
+    image: servicio-eureka-server:v1
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - tipocambio
+  microservicios-mysql8:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      - tipocambio
+    environment: 
+      MYSQL_DATABASE: tipocambio
+      MYSQL_ROOT_PASSWORD: root
+  servicio-usuarios:
+    image: servicio-usuarios:v1
+    ports:
+      - "8091:8091"
+    restart: always
+    networks:
+      - tipocambio
+    depends_on: 
+      - servicio-eureka-server
+      - microservicios-mysql8
+  servicio-oauth:
+    image: servicio-oauth:v1
+    ports:
+      - "9100:9100"
+    restart: always
+    networks:
+      - tipocambio
+    depends_on: 
+      - servicio-eureka-server
+      - servicio-usuarios
+  servicio-tipocambio:
+    image: servicio-tipocambio:v1
+    ports:
+      - "8092:8092"
+    restart: always
+    networks:
+      - tipocambio
+    depends_on: 
+      - servicio-eureka-server
+      - microservicios-mysql8
+networks:
+  tipocambio:

@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "4d928d44-7b04-44a5-b176-8ae7fd023c94",
+		"name": "Tipo cambio collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Token de Acceso",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "frontendapp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "eduardo",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9100/oauth/token",
+					"host": [
+						"localhost"
+					],
+					"port": "9100",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Conversion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDkwNTk5NDksInVzZXJfbmFtZSI6ImVkdWFyZG8iLCJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwianRpIjoiMjY0NzUwYjYtOGMyMC00NmY4LTg1MmMtMzllNjhlYjRhZjgwIiwiY2xpZW50X2lkIjoiZnJvbnRlbmRhcHAiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.yZ_WpUs85hrxsWmSwJI7tpcco42lolsIdhhqrnFSpD0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDkwNTkwNzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiIzZjVkMDhiNC00MjRiLTQ1NDgtYWFlMC1kM2FlMDQ1OWE1OWYiLCJjbGllbnRfaWQiOiJmcm9udGVuZGFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Opw4QERlf-_4wp2YYWqd95cHYD3UgF9asFrryCsEoVs",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"origen\": \"USD\",\r\n    \"destino\": \"PEN\",\r\n    \"monto\": 4.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8092/tipocambio/convertir",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8092",
+					"path": [
+						"tipocambio",
+						"convertir"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDkwNTkwNzIsInVzZXJfbmFtZSI6ImFkbWluIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJqdGkiOiIzZjVkMDhiNC00MjRiLTQ1NDgtYWFlMC1kM2FlMDQ1OWE1OWYiLCJjbGllbnRfaWQiOiJmcm9udGVuZGFwcCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.Opw4QERlf-_4wp2YYWqd95cHYD3UgF9asFrryCsEoVs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"origen\": \"PEN\",\r\n    \"destino\": \"USD\",\r\n    \"monto\": 4.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8092/tipocambio/insertar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8092",
+					"path": [
+						"tipocambio",
+						"insertar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
